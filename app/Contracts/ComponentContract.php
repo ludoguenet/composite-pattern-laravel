@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
-interface FormElementComponent
+interface ComponentContract
 {
     public function render(): string;
 }

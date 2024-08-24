@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FormBuilder\Fieldset;
 use App\FormBuilder\Form;
 use App\FormBuilder\Input;
 use Illuminate\View\View;
@@ -11,14 +12,18 @@ class FormController extends Controller
 {
     public function __invoke(Request $request): View
     {
-        $form = new Form('mon super formulaire');
+        $form = new Form('Mon super formulaire');
 
         $input1 = new Input('text', 'name');
         $input2 = new Input('email', 'email');
-    
-        $form->add($input1);
-        $form->add($input2);
-    
+
+        $fieldset = new Fieldset('Inscription');
+
+        $fieldset->addChild($input1);
+        $fieldset->addChild($input2);
+
+        $form->addChild($fieldset);
+
         $form = $form->render();
 
         return view('form', compact('form'));

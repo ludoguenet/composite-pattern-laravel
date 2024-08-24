@@ -6,19 +6,19 @@ namespace App\FormBuilder;
 
 use App\Abstracts\CompositeComponent;
 
-class Form extends CompositeComponent
+class Fieldset extends CompositeComponent
 {
-    public function __construct(public readonly string $title){}
+    public function __construct(public readonly string $legend){}
 
     public function render(): string
     {
-        $html = '<form><h1>' . $this->title . '</h1>';
+        $html = '<fieldset><legend>' . $this->legend . '</legend>';
 
         foreach($this->children as $child) {
             $html .= $child->render();
         }
 
-        $html .= '</form>';
+        $html .= '</fieldset>';
 
         return $html;
     }

@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\FormBuilder;
 
-use App\Contracts\FormElementComponent;
+use App\Contracts\ComponentContract;
 
-class Input implements FormElementComponent
+class Input implements ComponentContract
 {
-    public function __construct(private string $type, private string $name)
-    {}
+    public function __construct(public readonly string $type, public readonly string $name){}
 
     public function render(): string
     {
-        return '<input type=' . $this->type . ' name=' . $this->name . ' />';
+
+        return "<input type={$this->type} name={$this->name} />";
     }
 }
